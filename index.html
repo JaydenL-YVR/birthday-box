@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gift Box</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="giftcontainer">
+        <div class="name-input">
+            <label for="name">Birthday Name:</label>
+            <input type="text" id="name" placeholder="Enter name here">
+        </div>
+        <div class="gift">
+            <input type="checkbox" id="click">
+            <label for="click" class="click"></label>
+            <div class="wishes">
+                Happy Birthday <span id="birthdayName"></span>
+                <div id="emoji" style="display: none; font-size: 40px;">😂</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+        const clickCheckbox = document.getElementById('click');
+        const nameInput = document.getElementById('name');
+        const birthdayName = document.getElementById('birthdayName');
+        const emoji = document.getElementById('emoji');
+
+        clickCheckbox.addEventListener('change', function() {
+            if (clickCheckbox.checked && nameInput.value.trim() !== "") {
+                birthdayName.textContent = nameInput.value;
+                emoji.style.display = 'block'; // Show the laughing emoji
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                emoji.style.display = 'none'; // Hide the emoji if unchecked
+            }
+        });
+    </script>
+</body>
+</html>
